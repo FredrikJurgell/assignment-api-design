@@ -10,6 +10,8 @@ import helmet from 'helmet'
 import logger from 'morgan'
 import { router } from './routes/router.js'
 import { connectDB } from './config/mongoose.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 try {
   await connectDB()
