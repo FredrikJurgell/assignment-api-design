@@ -198,6 +198,17 @@ export class CatchController {
    */
   async delete (req, res, next) {
     try {
+      const theCatch = await CatchModel.findOne({ userId: req.user.userId, _id: req.theCatch._id })
+      if (theCatch !== null) {
+        await req.theCatch.deleteOne({ userId: req.user.userId })
+  
+        res
+          .status(204)
+          .end()
+      } else {
+        const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
+        next(err)
+      }
     } catch (error) {
       next(error)
     }
