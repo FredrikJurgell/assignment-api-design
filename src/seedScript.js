@@ -43,7 +43,7 @@ db.once('open', async () => {
   // Create some catches, referencing the users created above.
   await CatchModel.create([
     {
-      user: users[0]._id,
+      userId: users[0]._id,
       position: 1,
       lakeOrRiver: 'Lake',
       city: 'Stockholm',
@@ -54,7 +54,7 @@ db.once('open', async () => {
       timestamp: new Date('2023-01-01')
     },
     {
-      user: users[1]._id,
+      userId: users[1]._id,
       position: 2,
       lakeOrRiver: 'River',
       city: 'Gothenburg',
@@ -65,7 +65,7 @@ db.once('open', async () => {
       timestamp: new Date('2023-02-01')
     },
     {
-      user: users[2]._id,
+      userId: users[2]._id,
       position: 3,
       lakeOrRiver: 'Lake',
       city: 'Malmö',

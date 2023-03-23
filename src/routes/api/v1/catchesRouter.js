@@ -35,8 +35,6 @@ const authenticateJWT = (req, res, next) => {
     const payload = jwt.verify(token, Buffer.from(process.env.ACCESS_TOKEN_SECRET_PUBLIC, 'base64'))
     req.user = {
       username: payload.username,
-      firstName: payload.firstName,
-      lastName: payload.lastName,
       email: payload.email,
       userId: payload.userId
     }

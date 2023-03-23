@@ -24,6 +24,20 @@ export class CatchController {
    */
   async loadCatch (req, res, next, id) {
     try {
+      // Get the catch.
+      const theCatch = await CatchModel.findById(id)
+
+      // If no catch found send a 404 (Not Found).
+      if (!theCatch) {
+        next(createError(404))
+        return
+      }
+
+      // Provide the catch to req.
+      req.theCatch = theCatch
+
+      // Next middleware.
+      next()
     } catch (error) {
       // Authentication failed.
       const err = createError(401)
@@ -43,6 +57,14 @@ export class CatchController {
    */
   async find (req, res, next) {
     try {
+      const theCatch = await CatchModel.findOne({ userId: req.user.userId, _id: req.theCatch._id })
+
+      if (theCatch) {
+        res.json(theCatch)
+      } else {
+        const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
+        next(err)
+      }
     } catch (error) {
       const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
 
@@ -59,6 +81,9 @@ export class CatchController {
    */
   async findAll (req, res, next) {
     try {
+      const catches = await CatchModel.find({ userId: req.user.userId })
+
+      res.json(catches)
     } catch (error) {
       next(error)
     }
@@ -74,7 +99,7 @@ export class CatchController {
   async create (req, res, next) {
     try {
       const theCatch = new CatchModel({
-        user: req.body.user,
+        userId: req.body.userId,
         position: req.body.position,
         lakeOrRiver: req.body.lakeOrRiver,
         city: req.body.city,
