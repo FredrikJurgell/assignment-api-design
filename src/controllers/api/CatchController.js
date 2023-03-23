@@ -130,6 +130,26 @@ export class CatchController {
    */
   async update (req, res, next) {
     try {
+      const theCatch = await CatchModel.findOne({ userId: req.user.userId, _id: req.theCatch._id })
+
+      if (theCatch !== null) {
+        req.theCatch.position = req.body.position || req.theCatch.position
+        req.theCatch.lakeOrRiver = req.body.lakeOrRiver || req.theCatch.lakeOrRiver
+        req.theCatch.city = req.body.city || req.theCatch.city
+        req.theCatch.species = req.body.species || req.theCatch.species
+        req.theCatch.weight = req.body.weight || req.theCatch.weight
+        req.theCatch.length = req.body.length || req.theCatch.length
+        req.theCatch.imageURL = req.body.imageURL || req.theCatch.imageURL
+
+        await req.theCatch.save({ userId: req.user.userId })
+
+        res
+          .status(204)
+          .end()
+      } else {
+        const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
+        next(err)
+      }
     } catch (error) {
       next(error)
     }
@@ -144,6 +164,26 @@ export class CatchController {
    */
   async patch (req, res, next) {
     try {
+      const theCatch = await CatchModel.findOne({ userId: req.user.userId, _id: req.theCatch._id })
+
+      if (theCatch !== null) {
+        req.theCatch.position = req.body.position || req.theCatch.position
+        req.theCatch.lakeOrRiver = req.body.lakeOrRiver || req.theCatch.lakeOrRiver
+        req.theCatch.city = req.body.city || req.theCatch.city
+        req.theCatch.species = req.body.species || req.theCatch.species
+        req.theCatch.weight = req.body.weight || req.theCatch.weight
+        req.theCatch.length = req.body.length || req.theCatch.length
+        req.theCatch.imageURL = req.body.imageURL || req.theCatch.imageURL
+
+        await req.theCatch.save({ userId: req.user.userId })
+
+        res
+          .status(204)
+          .end()
+      } else {
+        const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
+        next(err)
+      }
     } catch (error) {
       next(error)
     }
