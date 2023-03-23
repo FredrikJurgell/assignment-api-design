@@ -73,6 +73,22 @@ export class CatchController {
    */
   async create (req, res, next) {
     try {
+      const theCatch = new CatchModel({
+        user: req.body.user,
+        position: req.body.position,
+        lakeOrRiver: req.body.lakeOrRiver,
+        city: req.body.city,
+        species: req.body.species,
+        weight: req.body.weight,
+        length: req.body.length,
+        imageURL: req.body.imageURL
+      })
+
+      await theCatch.save()
+
+      res
+        .status(201)
+        .json(theCatch)
     } catch (error) {
       const err = createError(400, 'The request cannot or will not be processed due to something that is perceived to be a client error (for example, validation error).')
 
