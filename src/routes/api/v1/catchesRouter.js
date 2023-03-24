@@ -1,5 +1,5 @@
 /**
- * API version 1 routes.
+ * Catches routes.
  *
  * @author Fredrik Jurgell
  * @version 1.0.0
@@ -83,9 +83,3 @@ router.delete('/:id',
   authenticateJWT,
   (req, res, next) => controller.delete(req, res, next)
 )
-
-// Log in
-router.post('/login', (req, res, next) => controller.login(req, res, next))
-
-// Register
-router.post('/register', (req, res, next) => controller.register(req, res, next))
