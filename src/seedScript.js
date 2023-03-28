@@ -21,7 +21,7 @@ db.once('open', async () => {
   await CatchModel.deleteMany({})
   await UserModel.deleteMany({})
 
-    // Create some users.
+  // Create some users.
   const users = await UserModel.create([
     {
       username: 'user1',

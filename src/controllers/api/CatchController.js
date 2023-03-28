@@ -6,9 +6,7 @@
  */
 
 import createError from 'http-errors'
-import jwt from 'jsonwebtoken'
 import { CatchModel } from '../../models/CatchModel.js'
-import { UserModel } from '../../models/UserModel.js'
 
 /**
  * Encapsulates a controller.
@@ -201,7 +199,7 @@ export class CatchController {
       const theCatch = await CatchModel.findOne({ userId: req.user.userId, _id: req.theCatch._id })
       if (theCatch !== null) {
         await req.theCatch.deleteOne({ userId: req.user.userId })
-  
+
         res
           .status(204)
           .end()

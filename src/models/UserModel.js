@@ -35,20 +35,28 @@ const schema = new mongoose.Schema({
     unique: true,
     trim: true,
     validate: [isEmail, 'Please provide a valid email address.']
+  },
+  webhookURL: {
+    type: String
+  },
+  webhookSecretToken: {
+    type: String
   }
 })
 
 // Salts and hashes password before save.
 schema.pre('save', async function () {
   this.password = await bcrypt.hash(this.password, 10)
+  this.webhookSecretToken = await bcrypt.hash(this.webhookSecretToken, 10)
 })
 
 /**
  * Authenticates a user.
  *
- * @param {string} username - ...
- * @param {string} password - ...
- * @returns {Promise<User>} ...
+ * @param {string} username - The username of the user to authenticate.
+ * @param {string} password - The password of the user to authenticate.
+ * @returns {Promise<User>} A Promise that resolves to the authenticated user.
+ * @throws {Error} If no user is found with the given username, or if the password is incorrect.
  */
 schema.statics.authenticate = async function (username, password) {
   const user = await this.findOne({ username })

@@ -50,7 +50,7 @@ const authenticateJWT = (req, res, next) => {
 router.param('id', (req, res, next, id) => controller.loadCatch(req, res, next, id))
 
 // GET catches
-router.get('/', 
+router.get('/',
   authenticateJWT,
   (req, res, next) => controller.findAll(req, res, next)
 )
