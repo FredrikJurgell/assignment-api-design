@@ -55,12 +55,35 @@ export class CatchController {
    */
   async find (req, res, next) {
     try {
-      const theCatch = await CatchModel.findOne({ userId: req.user.userId, _id: req.theCatch._id })
-
+      const theCatch = await CatchModel.findOne({
+        userId: req.user.userId,
+        _id: req.theCatch._id,
+      })
+  
       if (theCatch) {
-        res.json(theCatch)
+        const catchResponse = {
+          _id: theCatch._id,
+          userId: theCatch.userId,
+          position: theCatch.position,
+          lakeOrRiver: theCatch.lakeOrRiver,
+          city: theCatch.city,
+          species: theCatch.species,
+          weight: theCatch.weight,
+          length: theCatch.length,
+          imageURL: theCatch.imageURL,
+          links: [
+            {
+              rel: 'self',
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
+            },
+          ],
+        }
+        res.json(catchResponse)
       } else {
-        const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
+        const err = createError(
+          403,
+          'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.'
+        )
         next(err)
       }
     } catch (error) {
@@ -81,7 +104,38 @@ export class CatchController {
     try {
       const catches = await CatchModel.find({ userId: req.user.userId })
 
-      res.json(catches)
+      const catchesResponse = {
+        catches: [],
+        links: [
+          {
+            rel: 'self',
+            href: `${req.protocol}://${req.get('host')}/api/v1/catches`,
+          },
+        ],
+      }
+
+      catches.forEach((catchItem) => {
+        const catchResponse = {
+          _id: catchItem._id,
+          userId: catchItem.userId,
+          position: catchItem.position,
+          lakeOrRiver: catchItem.lakeOrRiver,
+          city: catchItem.city,
+          species: catchItem.species,
+          weight: catchItem.weight,
+          length: catchItem.length,
+          imageURL: catchItem.imageURL,
+          links: [
+            {
+              rel: 'self',
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${catchItem._id}`,
+            },
+          ],
+        }
+        catchesResponse.catches.push(catchResponse)
+      })
+
+      res.json(catchesResponse)
     } catch (error) {
       next(error)
     }
@@ -97,7 +151,7 @@ export class CatchController {
   async create (req, res, next) {
     try {
       const theCatch = new CatchModel({
-        userId: req.body.userId,
+        userId: req.user.userId,
         position: req.body.position,
         lakeOrRiver: req.body.lakeOrRiver,
         city: req.body.city,
@@ -106,12 +160,29 @@ export class CatchController {
         length: req.body.length,
         imageURL: req.body.imageURL
       })
-
+  
       await theCatch.save()
-
+  
+      const catchResponse = {
+        _id: theCatch._id,
+        userId: theCatch.userId,
+        position: theCatch.position,
+        lakeOrRiver: theCatch.lakeOrRiver,
+        city: theCatch.city,
+        species: theCatch.species,
+        weight: theCatch.weight,
+        length: theCatch.length,
+        imageURL: theCatch.imageURL,
+        links: [
+          {
+            rel: 'self',
+            href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
+          },
+        ],
+      }
       res
         .status(201)
-        .json(theCatch)
+        .json(catchResponse)
     } catch (error) {
       const err = createError(400, 'The request cannot or will not be processed due to something that is perceived to be a client error (for example, validation error).')
 
@@ -141,9 +212,24 @@ export class CatchController {
 
         await req.theCatch.save({ userId: req.user.userId })
 
-        res
-          .status(204)
-          .end()
+        const catchResponse = {
+          _id: theCatch._id,
+          userId: theCatch.userId,
+          position: theCatch.position,
+          lakeOrRiver: theCatch.lakeOrRiver,
+          city: theCatch.city,
+          species: theCatch.species,
+          weight: theCatch.weight,
+          length: theCatch.length,
+          imageURL: theCatch.imageURL,
+          links: [
+            {
+              rel: 'self',
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
+            },
+          ],
+        }
+        res.json(catchResponse)
       } else {
         const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
         next(err)
@@ -175,9 +261,26 @@ export class CatchController {
 
         await req.theCatch.save({ userId: req.user.userId })
 
+        const catchResponse = {
+          _id: theCatch._id,
+          userId: theCatch.userId,
+          position: theCatch.position,
+          lakeOrRiver: theCatch.lakeOrRiver,
+          city: theCatch.city,
+          species: theCatch.species,
+          weight: theCatch.weight,
+          length: theCatch.length,
+          imageURL: theCatch.imageURL,
+          links: [
+            {
+              rel: 'self',
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
+            },
+          ],
+        }
         res
-          .status(204)
-          .end()
+          .status(201)
+          .json(catchResponse)
       } else {
         const err = createError(403, 'The request contained valid data and was understood by the server, but the server is refusing action due to the authenticated user not having the necessary permissions for the resource.')
         next(err)

@@ -10,13 +10,13 @@
  */
 export class HookController {
   /**
-   * Recieves a Webhook, validates it and sends it to Issues Create Controller.
+   * Validates a webhook and sends it to Issues Create Controller.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
    * @param {Function} next - Express next middleware function.
    */
-  index (req, res, next) {
+  validateWebhook (req, res, next) {
     req.body = {
       username: req.body.username,
       password: req.body.password,
@@ -24,6 +24,19 @@ export class HookController {
       webhookURL: req.body.webhookURL,
       webhookSecretToken: req.body.webhookSecretToken
     }
+
+    // HATEOAS response
+    res.status(201).json({
+      id: user.id,
+      message: 'Webhook validated successfully',
+      links: {
+        self: {
+          href: `${req.protocol}://${req.get('host')}/api/v1/webhook`,
+          method: 'POST',
+          type: 'application/json'
+        }
+      }
+    })
 
     next()
   }

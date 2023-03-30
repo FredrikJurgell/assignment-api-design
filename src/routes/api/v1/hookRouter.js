@@ -14,4 +14,4 @@ export const router = express.Router()
 const controller = new HookController()
 const userController = new UserController()
 // Map HTTP verbs and route paths to controller actions.
-router.post('/register', controller.index, userController.register)
+router.post('/register', controller.validateWebhook, userController.register)

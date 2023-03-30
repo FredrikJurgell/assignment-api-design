@@ -72,6 +72,7 @@ router.put('/:id',
   authenticateJWT,
   (req, res, next) => controller.update(req, res, next)
 )
+
 // PATCH catches/:id
 router.patch('/:id',
   authenticateJWT,

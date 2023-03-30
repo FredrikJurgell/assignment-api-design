@@ -40,7 +40,14 @@ export class UserController {
       res
         .status(201)
         .json({
-          access_token: accessToken
+          access_token: accessToken,
+          userId: payload.userId,
+          links: [
+            {
+              rel: "profile",
+              href: `${req.protocol}://${req.get('host')}/api/v1/users/${user._id}`
+            }
+          ]
         })
     } catch (error) {
       // Authentication failed.
@@ -91,7 +98,19 @@ export class UserController {
 
       res
         .status(201)
-        .json({ id: user.id })
+        .json({ 
+          id: user.id,
+          links: [
+            {
+              rel: "self",
+              href: `${req.protocol}://${req.get('host')}/api/v1/users/${user._id}`
+            },
+            {
+              rel: "users",
+              href: `${req.protocol}://${req.get('host')}/api/v1/users`
+            }
+          ]
+        })
     } catch (error) {
       let err = error
 

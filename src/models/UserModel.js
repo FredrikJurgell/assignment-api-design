@@ -47,7 +47,9 @@ const schema = new mongoose.Schema({
 // Salts and hashes password before save.
 schema.pre('save', async function () {
   this.password = await bcrypt.hash(this.password, 10)
-  this.webhookSecretToken = await bcrypt.hash(this.webhookSecretToken, 10)
+  if (this.webhookSecretToken) {
+    this.webhookSecretToken = await bcrypt.hash(this.webhookSecretToken, 10)
+  }
 })
 
 /**
