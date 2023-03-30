@@ -57,7 +57,7 @@ schema.pre('save', async function () {
  *
  * @param {string} username - The username of the user to authenticate.
  * @param {string} password - The password of the user to authenticate.
- * @returns {Promise<User>} A Promise that resolves to the authenticated user.
+ * @returns {Promise} A Promise that resolves to the authenticated user.
  * @throws {Error} If no user is found with the given username, or if the password is incorrect.
  */
 schema.statics.authenticate = async function (username, password) {

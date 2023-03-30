@@ -44,7 +44,7 @@ export class UserController {
           userId: payload.userId,
           links: [
             {
-              rel: "profile",
+              rel: 'profile',
               href: `${req.protocol}://${req.get('host')}/api/v1/users/${user._id}`
             }
           ]
@@ -98,15 +98,15 @@ export class UserController {
 
       res
         .status(201)
-        .json({ 
+        .json({
           id: user.id,
           links: [
             {
-              rel: "self",
+              rel: 'self',
               href: `${req.protocol}://${req.get('host')}/api/v1/users/${user._id}`
             },
             {
-              rel: "users",
+              rel: 'users',
               href: `${req.protocol}://${req.get('host')}/api/v1/users`
             }
           ]

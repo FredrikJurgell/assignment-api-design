@@ -57,9 +57,9 @@ export class CatchController {
     try {
       const theCatch = await CatchModel.findOne({
         userId: req.user.userId,
-        _id: req.theCatch._id,
+        _id: req.theCatch._id
       })
-  
+
       if (theCatch) {
         const catchResponse = {
           _id: theCatch._id,
@@ -74,9 +74,9 @@ export class CatchController {
           links: [
             {
               rel: 'self',
-              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
-            },
-          ],
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`
+            }
+          ]
         }
         res.json(catchResponse)
       } else {
@@ -109,9 +109,9 @@ export class CatchController {
         links: [
           {
             rel: 'self',
-            href: `${req.protocol}://${req.get('host')}/api/v1/catches`,
-          },
-        ],
+            href: `${req.protocol}://${req.get('host')}/api/v1/catches`
+          }
+        ]
       }
 
       catches.forEach((catchItem) => {
@@ -128,9 +128,9 @@ export class CatchController {
           links: [
             {
               rel: 'self',
-              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${catchItem._id}`,
-            },
-          ],
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${catchItem._id}`
+            }
+          ]
         }
         catchesResponse.catches.push(catchResponse)
       })
@@ -160,9 +160,9 @@ export class CatchController {
         length: req.body.length,
         imageURL: req.body.imageURL
       })
-  
+
       await theCatch.save()
-  
+
       const catchResponse = {
         _id: theCatch._id,
         userId: theCatch.userId,
@@ -176,9 +176,9 @@ export class CatchController {
         links: [
           {
             rel: 'self',
-            href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
-          },
-        ],
+            href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`
+          }
+        ]
       }
       res
         .status(201)
@@ -225,9 +225,9 @@ export class CatchController {
           links: [
             {
               rel: 'self',
-              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
-            },
-          ],
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`
+            }
+          ]
         }
         res.json(catchResponse)
       } else {
@@ -274,9 +274,9 @@ export class CatchController {
           links: [
             {
               rel: 'self',
-              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`,
-            },
-          ],
+              href: `${req.protocol}://${req.get('host')}/api/v1/catches/${theCatch._id}`
+            }
+          ]
         }
         res
           .status(201)
