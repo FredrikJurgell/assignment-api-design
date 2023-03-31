@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "5dd7dde2-2feb-425c-ad73-5d1b5acc0e5c",
+		"name": "1dv027-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15334504"
+	},
+	"item": [
+		{
+			"name": "https://cscloud8-103.lnu.se/api-app/api/v1/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://cscloud8-103.lnu.se/api-app/api/v1/",
+					"protocol": "https",
+					"host": [
+						"cscloud8-103",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"api-app",
+						"api",
+						"v1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://cscloud8-103.lnu.se/api-app/api/v1/webhook/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user2\",\n    \"password\": \"password222\",\n    \"email\": \"user2@example.com\",\n    \"webhookURL\": \"https://webhook.site/#!/2d8f9135-34cc-4384-99e0-3666f4cdf7e5\",\n    \"webhookSecretToken\": \"H_ZQW8doGizytfh_GVnqjjCmysAZYtZQ3vr3BJC8ZZL3Ai*_Ha-aBPq6Z.ZJj2awZXTUA6!4oZxK26h-NagXKTxZT-ebF*o9Bvox\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-103.lnu.se/api-app/api/v1/webhook/register",
+					"protocol": "https",
+					"host": [
+						"cscloud8-103",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"api-app",
+						"api",
+						"v1",
+						"webhook",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://cscloud8-103.lnu.se/api-app/api/v1/user/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user3\",\n    \"password\": \"password333\",\n    \"email\": \"user3@example.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-103.lnu.se/api-app/api/v1/user/register",
+					"protocol": "https",
+					"host": [
+						"cscloud8-103",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"api-app",
+						"api",
+						"v1",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://cscloud8-103.lnu.se/api-app/api/v1/user/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user1\",\n    \"password\": \"password111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-103.lnu.se/api-app/api/v1/user/login",
+					"protocol": "https",
+					"host": [
+						"cscloud8-103",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"api-app",
+						"api",
+						"v1",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://cscloud8-103.lnu.se/api-app/api/v1/catches/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiZW1haWwiOiJ1c2VyMUBleGFtcGxlLmNvbSIsInVzZXJJZCI6IjY0MjU4YjA0M2E3YzI3NjdjYzdhNmY5OCIsImlhdCI6MTY4MDI2Njk2MCwiZXhwIjoxNjgwMjY3MDQ2fQ.hKuMxnCnYiujhm_pWbf0Y6ysH2U-WbubZpUNbNw2BJXRaJRWmPqbJMsvZS73oNsxw8AYV0PQwOdD9V15j7exbR2MCfDNoKX3LM6S5BQkRN9CnOTdgHucYL871YKjAnCLXZqI3ul3tNQrsmk0PRo6MNdo8DpcafuAV8lzs7OECdf4NFqtvwfz5mkq3ECHfZWbTovwgaMR_Pjyglp3VD2194tXSK8NIIPdLnqgdHhe0l73_5AOgonGJgXJZld2fouswa4Ra9EHnDWHj2NbcK0OWQNcHD2W0jqXnaqB9xlDnK6kuZG0Zi5ZwEXlLbxjIFqBYv2jnCZQAp9hAS4MSL9S8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \n    \"position\": 17826478503,\n    \"lakeOrRiver\": \"Lake\",\n    \"city\": \"Stockholm\",\n    \"species\": \"Pike\",\n    \"weight\": 5,\n    \"length\": 60,\n    \"imageURL\": \"'https://example.com/image1.jpg'\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-103.lnu.se/api-app/api/v1/catches/",
+					"protocol": "https",
+					"host": [
+						"cscloud8-103",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"api-app",
+						"api",
+						"v1",
+						"catches",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://cscloud8-103.lnu.se/api-app/api/v1/catches/ Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiZW1haWwiOiJ1c2VyMUBleGFtcGxlLmNvbSIsInVzZXJJZCI6IjY0MjU4YjA0M2E3YzI3NjdjYzdhNmY5OCIsImlhdCI6MTY4MDI2Njk2MCwiZXhwIjoxNjgwMjY3MDQ2fQ.hKuMxnCnYiujhm_pWbf0Y6ysH2U-WbubZpUNbNw2BJXRaJRWmPqbJMsvZS73oNsxw8AYV0PQwOdD9V15j7exbR2MCfDNoKX3LM6S5BQkRN9CnOTdgHucYL871YKjAnCLXZqI3ul3tNQrsmk0PRo6MNdo8DpcafuAV8lzs7OECdf4NFqtvwfz5mkq3ECHfZWbTovwgaMR_Pjyglp3VD2194tXSK8NIIPdLnqgdHhe0l73_5AOgonGJgXJZld2fouswa4Ra9EHnDWHj2NbcK0OWQNcHD2W0jqXnaqB9xlDnK6kuZG0Zi5ZwEXlLbxjIFqBYv2jnCZQAp9hAS4MSL9S8Q",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \n    \"position\": 1,\n    \"lakeOrRiver\": \"Lake\",\n    \"city\": \"Stockholm\",\n    \"species\": \"Pike\",\n    \"weight\": 5,\n    \"length\": 60,\n    \"imageURL\": \"'https://example.com/image1.jpg'\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://cscloud8-103.lnu.se/api-app/api/v1/catches/",
+					"protocol": "https",
+					"host": [
+						"cscloud8-103",
+						"lnu",
+						"se"
+					],
+					"path": [
+						"api-app",
+						"api",
+						"v1",
+						"catches",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
